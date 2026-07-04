@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTSoz.com - Gamified IELTS Practice</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts (Nunito & Roboto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Nunito', 'Roboto', sans-serif;
+            background-color: #f9fafb;
+        }
+        /* Duolingo 3D Button Effect */
+        .btn-3d {
+            transition: all 0.1s ease;
+            position: relative;
+        }
+        .btn-3d:active {
+            transform: translateY(4px);
+            box-shadow: none !important;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased min-height-screen flex flex-col">
+
+    <!-- 1. NAVIGATION NAVBAR -->
+    <nav class="bg-white border-b-2 border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <!-- Logo va Asosiy Menyu -->
+                <div class="flex items-center space-x-8">
+                    <a href="#" onclick="showSection('home')" class="text-3xl font-extrabold tracking-wider text-[#185adb]">
+                        IELTS<span class="text-[#764ba2]">oz</span>
+                    </a>
+                    <div class="hidden md:flex space-x-4 font-bold text-gray-600">
+                        <button onclick="showSection('home')" class="hover:text-[#764ba2] px-3 py-2 transition-colors">Home</button>
+                        <button onclick="showSection('tools')" class="hover:text-[#764ba2] px-3 py-2 transition-colors">Tools</button>
+                        <button onclick="showSection('tests')" class="hover:text-[#764ba2] px-3 py-2 transition-colors">Mock Tests</button>
+                        <button onclick="showSection('leaderboard')" class="hover:text-[#764ba2] px-3 py-2 transition-colors">Leaderboard</button>
+                    </div>
+                </div>
+                <!-- Foydalanuvchi ko'rsatkichlari (Duolingo Style) -->
+                <div class="flex items-center space-x-6 font-extrabold">
+                    <div class="flex items-center text-[#ff4a4a] text-lg bg-red-50 px-3 py-1.5 rounded-full border border-red-100">
+                        <i class="fa-solid fa-fire text-xl mr-2 animate-pulse"></i>
+                        <span>5 Days</span>
+                    </div>
+                    <div class="flex items-center text-[#764ba2] text-lg bg-purple-50 px-3 py-1.5 rounded-full border border-purple-100">
+                        <i class="fa-solid fa-bolt text-xl mr-2"></i>
+                        <span>1,250 XP</span>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-[#185adb] text-white flex items-center justify-center font-bold text-lg border-2 border-white shadow-md cursor-pointer">
+                        O
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ASOSIY KONTENT DIVI -->
+    <main class="flex-grow">
+        
+        <!-- SECTION 1: HOME (LANDING & HUB) -->
+        <section id="section-home" class="py-12 px-4 max-w-7xl mx-auto space-y-16">
+            <!-- Hero Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white p-8 md:p-12 rounded-3xl border-2 border-gray-200 shadow-sm">
+                <div class="space-y-6">
+                    <span class="bg-purple-100 text-[#764ba2] font-extrabold text-sm px-4 py-1.5 rounded-full uppercase tracking-wider">AI-Powered Platform</span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                        IELTS darajangizni <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#667eea] to-[#764ba2]">Gamified</span> uslubda oshiring!
+                    </h1>
+                    <p class="text-gray-600 text-lg font-medium leading-relaxed">
+                        Engnovate resurslari va Duolingo interaktiv o'yin muhiti uyg'unligi. Mutlaqo bepul, samarali va qiziqarli mock testlar hamda AI tahlili.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="showSection('tests')" class="btn-3d bg-[#764ba2] text-white font-extrabold px-8 py-4 rounded-2xl shadow-[0_4px_0_#583380] hover:bg-[#683f93] text-lg">
+                            Imtihonni Boshlash
+                        </button>
+                        <button onclick="showSection('tools')" class="btn-3d bg-white text-gray-700 border-2 border-gray-200 font-extrabold px-8 py-4 rounded-2xl shadow-[0_4px_0_#e2e8f0] hover:bg-gray-50 text-lg">
+                            Barcha Asboblar
+                        </button>
+                    </div>
+                </div>
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 text-center space-y-2">
+                        <div class="text-3xl font-extrabold text-[#185adb]"><i class="fa-solid fa-screwdriver-wrench"></i> 10+</div>
+                        <div class="text-sm font-bold text-gray-500 uppercase tracking-wider">AI Tools</div>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-2xl border border-purple-100 text-center space-y-2">
+                        <div class="text-3xl font-extrabold text-[#764ba2]"><i class="fa-solid fa-microphone"></i> 100+</div>
+                        <div class="text-sm font-bold text-gray-500 uppercase tracking-wider">Speaking Samples</div>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-2xl border border-red-100 text-center space-y-2">
+                        <div class="text-3xl font-extrabold text-[#ff4a4a]"><i class="fa-solid fa-pen-nib"></i> 100+</div>
+                        <div class="text-sm font-bold text-gray-500 uppercase tracking-wider">Writing Samples</div>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-2xl border border-green-100 text-center space-y-2">
+                        <div class="text-3xl font-extrabold text-[#1D9E75]"><i class="fa-solid fa-graduation-cap"></i> Band 9.0</div>
+                        <div class="text-sm font-bold text-gray-500 uppercase tracking-wider">Target Focused</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Access Practice Sections -->
+            <div class="space-y-6">
+                <h2 class="text-3xl font-extrabold text-gray-900 flex items-center">
+                    <i class="fa-solid fa-bolt-lightning text-yellow-500 mr-3"></i> Kundalik IELTS Mashqlari
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Reading Card -->
+                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex flex-col justify-between hover:border-[#185adb] transition-all">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-blue-100 text-[#185adb] flex items-center justify-center text-xl font-bold mb-4"><i class="fa-solid fa-book-open"></i></div>
+                            <h3 class="text-xl font-extrabold text-gray-900">Reading practice</h3>
+                            <p class="text-gray-500 font-medium text-sm mt-2">Matnlar, sinonimlar topish va skanerlash texnikasi.</p>
+                        </div>
+                        <button onclick="startSpecificTest('Reading')" class="btn-3d w-full mt-6 bg-[#185adb] text-white font-bold py-2.5 rounded-xl shadow-[0_3px_0_#0f3da3] text-center">Start</button>
+                    </div>
+                    <!-- Listening Card -->
+                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex flex-col justify-between hover:border-[#764ba2] transition-all">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-purple-100 text-[#764ba2] flex items-center justify-center text-xl font-bold mb-4"><i class="fa-solid fa-headphones"></i></div>
+                            <h3 class="text-xl font-extrabold text-gray-900">Listening practice</h3>
+                            <p class="text-gray-500 font-medium text-sm mt-2">Audio materiallar, xaritalar va to'ldirish mashqlari.</p>
+                        </div>
+                        <button onclick="alert('Listening tez kunda faollashadi!')" class="btn-3d w-full mt-6 bg-[#764ba2] text-white font-bold py-2.5 rounded-xl shadow-[0_3px_0_#533275] text-center">Start</button>
+                    </div>
+                    <!-- Writing Card -->
+                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex flex-col justify-between hover:border-[#ff4a4a] transition-all">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-red-100 text-[#ff4a4a] flex items-center justify-center text-xl font-bold mb-4"><i class="fa-solid fa-pen-field"></i></div>
+                            <h3 class="text-xl font-extrabold text-gray-900">Writing AI Checker</h3>
+                            <p class="text-gray-500 font-medium text-sm mt-2">Insholaringizni yuboring va darhol feedback oling.</p>
+                        </div>
+                        <button onclick="alert('Writing moduli yuklanmoqda...')" class="btn-3d w-full mt-6 bg-[#ff4a4a] text-white font-bold py-2.5 rounded-xl shadow-[0_3px_0_#b83232] text-center">Start</button>
+                    </div>
+                    <!-- Speaking Card -->
+                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex flex-col justify-between hover:border-[#1D9E75] transition-all">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-green-100 text-[#1D9E75] flex items-center justify-center text-xl font-bold mb-4"><i class="fa-solid fa-comment-dots"></i></div>
+                            <h3 class="text-xl font-extrabold text-gray-900">Speaking Simulator</h3>
+                            <p class="text-gray-500 font-medium text-sm mt-2">Haqiqiy imtihon muhiti va ovoz yozish tahlili.</p>
+                        </div>
+                        <button onclick="alert('Speaking tez kunda faollashadi!')" class="btn-3d w-full mt-6 bg-[#1D9E75] text-white font-bold py-2.5 rounded-xl shadow-[0_3px_0_#126b4f] text-center">Start</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: TOOLS (25+ TOOLS FRAMEWORK) -->
+        <section id="section-tools" class="hidden py-12 px-4 max-w-7xl mx-auto space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <h2 class="text-3xl font-extrabold text-gray-900">IELTS Smart Tools</h2>
+                <p class="text-gray-500 font-medium">Tayyorgarlik jarayonini osonlashtiruvchi 25 dan ortiq maxsus aqlli asboblar paneli.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tool 1 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-start space-x-4">
+                    <div class="p-3 bg-purple-100 text-[#764ba2] rounded-xl text-xl"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div class="space-y-1">
+                        <h4 class="font-extrabold text-gray-900 text-lg">AI Paraphraser</h4>
+                        <p class="text-gray-500 text-sm font-medium">Writing uchun gaplarni akademik darajada qayta shakllantirish.</p>
+                    </div>
+                </div>
+                <!-- Tool 2 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-start space-x-4">
+                    <div class="p-3 bg-blue-100 text-[#185adb] rounded-xl text-xl"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="space-y-1">
+                        <h4 class="font-extrabold text-gray-900 text-lg">Band Score Calculator</h4>
+                        <p class="text-gray-500 text-sm font-medium">To'g'ri javoblar sonini kiriting va IELTS balingizni biling.</p>
+                    </div>
+                </div>
+                <!-- Tool 3 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-start space-x-4">
+                    <div class="p-3 bg-red-100 text-[#ff4a4a] rounded-xl text-xl"><i class="fa-solid fa-spell-check"></i></div>
+                    <div class="space-y-1">
+                        <h4 class="font-extrabold text-gray-900 text-lg">Grammar Fixer</h4>
+                        <p class="text-gray-500 text-sm font-medium">Inshodagi grammatik va imloviy xatolarni qidirib topish.</p>
+                    </div>
+                </div>
+                <!-- Tool 4 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-start space-x-4">
+                    <div class="p-3 bg-green-100 text-[#1D9E75] rounded-xl text-xl"><i class="fa-solid fa-language"></i></div>
+                    <div class="space-y-1">
+                        <h4 class="font-extrabold text-gray-900 text-lg">Contextual Translator</h4>
+                        <p class="text-gray-500 text-sm font-medium">So'zlarni akademik matn ichidagi ma'nosi bilan tarjima qilish.</p>
+                    </div>
+                </div>
+                <!-- Tool 5 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-start space-x-4">
+                    <div class="p-3 bg-yellow-100 text-yellow-600 rounded-xl text-xl"><i class="fa-solid fa-layer-group"></i></div>
+                    <div class="space-y-1">
+                        <h4 class="font-extrabold text-gray-900 text-lg">Synonym Finder</h4>
+                        <p class="text-gray-500 text-sm font-medium">IELTS matnlarida takrorlanishni kamaytirish uchun sinonimlar lug'ati.</p>
+                    </div>
+                </div>
+                <!-- Tool 6 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex items-start space-x-4">
+                    <div class="p-3 bg-gray-100 text-gray-600 rounded-xl text-xl"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="space-y-1">
+                        <h4 class="font-extrabold text-gray-900 text-lg">Topic Generator</h4>
+                        <p class="text-gray-500 text-sm font-medium">Speaking va Writing uchun yangi tasodifiy imtihon mavzulari.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: MOCK TEST SIMULATOR (INTERACTIVE MOCK INTERFACE) -->
+        <section id="section-tests" class="hidden py-12 px-4 max-w-4xl mx-auto space-y-8">
+            <!-- Test Header Info -->
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl border-2 border-gray-200">
+                <div class="flex items-center space-x-4">
+                    <span id="test-skill-badge" class="bg-blue-100 text-[#185adb] font-extrabold px-3 py-1 rounded-xl text-sm">Reading Academic</span>
+                    <span class="text-gray-400 font-bold">|</span>
+                    <span class="text-gray-600 font-bold"><i class="fa-regular fa-clock mr-1"></i> Left: <span id="timer-display">19:59</span></span>
+                </div>
+                <div class="w-1/3 bg-gray-200 h-3.5 rounded-full overflow-hidden">
+                    <div id="test-progress-bar" class="bg-gradient-to-r from-[#667eea] to-[#764ba2] h-full transition-all duration-300" style="width: 33.3%;"></div>
+                </div>
+            </div>
+
+            <!-- Main Interactive Screen Split -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <!-- Text/Context Area -->
+                <div class="lg:col-span-6 bg-white p-6 rounded-3xl border-2 border-gray-200 max-h-[500px] overflow-y-auto space-y-4">
+                    <h3 class="text-2xl font-extrabold text-gray-900">The Rise of Artificial Intelligence</h3>
+                    <p class="text-gray-600 font-medium leading-relaxed text-sm md:text-base">
+                        In the contemporary era, the proliferation of machine learning systems has fundamentally reshaped global industry. Academic experts assert that implementing automated frameworks is no longer merely <span class="bg-yellow-100 font-bold text-gray-900 p-0.5 rounded">essential</span> for commercial scalability but has evolved into a cornerstone of operational intelligence.
+                    </p>
+                    <p class="text-gray-600 font-medium leading-relaxed text-sm md:text-base">
+                        However, this digital renaissance introduces severe multi-faceted dilemmas concerning workforce obsolescence and systemic data vulnerabilities that demand immediate global protocols.
+                    </p>
+                </div>
+
+                <!-- Questions and Options (Duolingo Style 3D Cards) -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="bg-white p-6 rounded-3xl border-2 border-gray-200 space-y-4">
+                        <div class="text-lg font-extrabold text-gray-900">
+                            Select the closest synonym for the highlighted word <span class="underline">"essential"</span> in the text:
+                        </div>
+                        
+                        <div class="grid grid-cols-1 gap-3">
+                            <!-- Option 1 -->
+                            <button onclick="selectPracticeOption(this, 'correct')" class="option-card w-full text-left bg-white border-2 border-gray-200 p-4 rounded-2xl font-bold flex items-center space-x-4 shadow-[0_4px_0_#e2e8f0] btn-3d">
+                                <span class="w-8 h-8 rounded-lg bg-gray-100 text-gray-400 flex items-center justify-center border border-gray-200 text-sm">1</span>
+                                <span class="text-gray-700">Crucial</span>
+                            </button>
+                            <!-- Option 2 -->
+                            <button onclick="selectPracticeOption(this, 'wrong')" class="option-card w-full text-left bg-white border-2 border-gray-200 p-4 rounded-2xl font-bold flex items-center space-x-4 shadow-[0_4px_0_#e2e8f0] btn-3d">
+                                <span class="w-8 h-8 rounded-lg bg-gray-100 text-gray-400 flex items-center justify-center border border-gray-200 text-sm">2</span>
+                                <span class="text-gray-700">Optional</span>
+                            </button>
+                            <!-- Option 3 -->
+                            <button onclick="selectPracticeOption(this, 'wrong')" class="option-card w-full text-left bg-white border-2 border-gray-200 p-4 rounded-2xl font-bold flex items-center space-x-4 shadow-[0_4px_0_#e2e8f0] btn-3d">
+                                <span class="w-8 h-8 rounded-lg bg-gray-100 text-gray-400 flex items-center justify-center border border-gray-200 text-sm">3</span>
+                                <span class="text-gray-700">Trivial</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- AI Instant Feedback Banner Container -->
+                    <div id="ai-feedback-banner" class="hidden rounded-2xl p-4 font-bold flex items-center space-x-3 transition-all">
+                        <!-- Dynamic Content via JS -->
+                    </div>
+
+                    <!-- Bottom Navigation Trigger -->
+                    <div class="flex justify-between items-center pt-2">
+                        <button onclick="showSection('home')" class="text-gray-500 font-bold hover:text-gray-800"><i class="fa-solid fa-arrow-left mr-1"></i> Quit Practice</button>
+                        <button id="btn-check-action" onclick="verifyAnswer()" class="btn-3d bg-[#764ba2] text-white font-extrabold px-8 py-3.5 rounded-xl shadow-[0_4px_0_#583380] text-sm uppercase tracking-wide">
+                            Check Answer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: LEADERBOARD -->
+        <section id="section-leaderboard" class="hidden py-12 px-4 max-w-xl mx-auto space-y-6">
+            <div class="text-center space-y-2">
+                <div class="text-4xl">🏆</div>
+                <h2 class="text-2xl font-extrabold text-gray-900">Ruby League</h2>
+                <p class="text-gray-500 text-sm font-medium">Top players advance to the next level in 2 days!</p>
+            </div>
+
+            <div class="bg-white rounded-3xl border-2 border-gray-200 overflow-hidden shadow-sm">
+                <!-- User row -->
+                <div class="flex justify-between items-center p-4 border-b border-gray-100 bg-purple-50/50">
+                    <div class="flex items-center space-x-4 font-bold">
+                        <span class="text-purple-700 text-lg w-6 text-center">1</span>
+                        <div class="w-9 h-9 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold">A</div>
+                        <span class="text-gray-900">Anvar Olimov</span>
+                    </div>
+                    <span class="font-extrabold text-purple-700">2,450 XP</span>
+                </div>
+                <!-- User row -->
+                <div class="flex justify-between items-center p-4 border-b border-gray-100 bg-blue-50/30">
+                    <div class="flex items-center space-x-4 font-bold">
+                        <span class="text-blue-600 text-lg w-6 text-center">2</span>
+                        <div class="w-9 h-9 rounded-full bg-[#185adb] text-white flex items-center justify-center font-bold">O</div>
+                        <span class="text-gray-900">Ozodbek (Siz)</span>
+                    </div>
+                    <span class="font-extrabold text-blue-600">1,250 XP</span>
+                </div>
+                <!-- User row -->
+                <div class="flex justify-between items-center p-4 border-b border-gray-100">
+                    <div class="flex items-center space-x-4 font-bold">
+                        <span class="text-gray-400 text-lg w-6 text-center">3</span>
+                        <div class="w-9 h-9 rounded-full bg-gray-400 text-white flex items-center justify-center font-bold">S</div>
+                        <span class="text-gray-900">Shahzoda K.</span>
+                    </div>
+                    <span class="font-extrabold text-gray-500">980 XP</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t-2 border-gray-200 py-6 text-center text-sm font-bold text-gray-400 mt-12">
+        <p>&copy; 2026 IELTSoz.com. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <!-- INTERAKTIV INTEGRATSIYA JAVASCRIPT -->
+    <script>
+        let selectedStatus = null;
+        let activeCardRef = null;
+
+        // Sahifalar navigatsiyasini boshqarish (SPA uslubi)
+        function showSection(sectionId) {
+            // Hamma sectionlarni yopish
+            document.getElementById('section-home').classList.add('hidden');
+            document.getElementById('section-tools').classList.add('hidden');
+            document.getElementById('section-tests').classList.add('hidden');
+            document.getElementById('section-leaderboard').classList.add('hidden');
+            
+            // Keraklisini ochish
+            document.getElementById('section-' + sectionId).classList.remove('hidden');
+            
+            // Tepaga qaytarish silliq holatda
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Testni boshlash triggers
+        function startSpecificTest(skill) {
+            document.getElementById('test-skill-badge').innerText = skill + ' Academic';
+            // Banner va tugmalarni tozalash
+            const banner = document.getElementById('ai-feedback-banner');
+            banner.classList.add('hidden');
+            
+            document.querySelectorAll('.option-card').forEach(c => {
+                c.className = "option-card w-full text-left bg-white border-2 border-gray-200 p-4 rounded-2xl font-bold flex items-center space-x-4 shadow-[0_4px_0_#e2e8f0] btn-3d";
+                c.querySelector('span:first-child').className = "w-8 h-8 rounded-lg bg-gray-100 text-gray-400 flex items-center justify-center border border-gray-200 text-sm";
+            });
+
+            selectedStatus = null;
+            activeCardRef = null;
+
+            showSection('tests');
+        }
+
+        // Variantni tanlash logikasi (Duolingo Style selection toggles)
+        function selectPracticeOption(element, status) {
+            // Agar javob tekshirib bo'lingan bo'lsa, variantni o'zgartirib bo'lmaydi
+            if (document.getElementById('ai-feedback-banner').classList.contains('bg-green-100') || 
+                document.getElementById('ai-feedback-banner').classList.contains('bg-red-100')) {
+                return;
+            }
+
+            // Barcha kartalarni default holatga keltirish
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('border-[#185adb]', 'bg-blue-50/50', 'shadow-[#185adb]');
+                card.querySelector('span:first-child').className = "w-8 h-8 rounded-lg bg-gray-100 text-gray-400 flex items-center justify-center border border-gray-200 text-sm";
+            });
+
+            // Faqat bosilganga aktiv stil berish
+            element.classList.add('border-[#185adb]', 'bg-blue-50/50', 'shadow-[#185adb]');
+            element.querySelector('span:first-child').className = "w-8 h-8 rounded-lg bg-blue-100 text-[#185adb] flex items-center justify-center border border-[#185adb] text-sm font-bold";
+            
+            selectedStatus = status;
+            activeCardRef = element;
+        }
+
+        // Javobni tekshirish (AI instant evaluation layer)
+        function verifyAnswer() {
+            if (!selectedStatus) {
+                alert("Iltimos, avval variantlardan birini tanlang!");
+                return;
+            }
+
+            const banner = document.getElementById('ai-feedback-banner');
+            banner.classList.remove('hidden');
+
+            if (selectedStatus === 'correct') {
+                banner.className = "rounded-2xl p-4 font-bold flex items-center space-x-3 bg-green-100 text-green-800 border-2 border-green-200";
+                banner.innerHTML = `<i class="fa-solid fa-circle-check text-xl"></i> <span>Ajoyib! To'g'ri javob topsangiz Band 8.0+ darajaga erishishingiz mumkin.</span>`;
+                
+                if (activeCardRef) {
+                    activeCardRef.className = "option-card w-full text-left bg-green-50 border-2 border-green-500 p-4 rounded-2xl font-bold flex items-center space-x-4 shadow-[0_4px_0_#22c55e] btn-3d";
+                    activeCardRef.querySelector('span:first-child').className = "w-8 h-8 rounded-lg bg-green-500 text-white flex items-center justify-center text-sm font-bold";
+                }
+            } else {
+                banner.className = "rounded-2xl p-4 font-bold flex items-center space-x-3 bg-red-100 text-red-800 border-2 border-red-200";
+                banner.innerHTML = `<i class="fa-solid fa-circle-xmark text-xl"></i> <span>Noto'g'ri. 'Crucial' matndagi eng mos sinonim hisoblanadi. Matnni qayta ko'ring.</span>`;
+                
+                if (activeCardRef) {
+                    activeCardRef.className = "option-card w-full text-left bg-red-50 border-2 border-red-500 p-4 rounded-2xl font-bold flex items-center space-x-4 shadow-[0_4px_0_#ef4444] btn-3d";
+                    activeCardRef.querySelector('span:first-child').className = "w-8 h-8 rounded-lg bg-red-500 text-white flex items-center justify-center text-sm font-bold";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
